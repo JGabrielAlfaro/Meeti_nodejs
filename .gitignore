@@ -1,3 +1,5 @@
 /node_modules
 variables.env
 /public/img
+/public/uploads
+/public/uploads/grupos
