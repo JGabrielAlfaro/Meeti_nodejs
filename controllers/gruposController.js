@@ -19,7 +19,7 @@ const configuracionMulter = {
             cb(null, uniqueName);
         }
     }),
-    limits: { fileSize: 1 * 1024 }, // 1 MB  (bytes, convertimos a MB)
+    limits: { fileSize: 1 * 1024 * 1024 }, // 1 MB  (bytes, convertimos a MB)
     fileFilter: (req, file, cb) => {
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         if (allowedTypes.includes(file.mimetype)) {
