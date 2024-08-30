@@ -62,43 +62,25 @@
 
     <div class="seccion-admin">
         <h2>Tus Grupos</h2>
-        <ul>
-            <li>
-                <div class="informacion-admin">
-                    <h3>BlockChain Guadalajara</h3>
-                </div>
+        <% if(grupos.length > 0) { %>
+            <ul>
+                <% grupos.forEach(grupo => { %>
+                    <li>
+                        <div class="informacion-admin">
+                            <h3><%= grupo.nombre %></h3>
+                        </div>
 
-                <div class="acciones contenedor-botones">
-                    <a href="" class="btn btn-verde">Editar</a>
-                    <a href="" class="btn btn-azul2"> Imagen</a>
-                    <a href="" class="btn btn-rojo">Eliminar</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="informacion-admin">
-                    <h3>GraphQL Costa Rica</h3>
-                </div>
-
-                <div class="acciones contenedor-botones">
-                    <a href="" class="btn btn-verde">Editar</a>
-                    <a href="" class="btn btn-azul2"> Imagen</a>
-                    <a href="" class="btn btn-rojo">Eliminar</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="informacion-admin">
-                    <h3>NODEJS Costa Rica</h3>
-                </div>
-
-                <div class="acciones contenedor-botones">
-                    <a href="" class="btn btn-verde">Editar</a>
-                    <a href="" class="btn btn-azul2"> Imagen</a>
-                    <a href="" class="btn btn-rojo">Eliminar</a>
-                </div>
-            </li>
-        </ul>   
+                        <div class="acciones contenedor-botones">
+                            <a href="/editar-grupo/<%= grupo.id %>" class="btn btn-verde">Editar</a>
+                            <a href="/imagen-grupo/<%= grupo.id %>" class="btn btn-azul2"> Imagen</a>
+                            <a href="/eliminar-grupo/<%= grupo.id %>" class="btn btn-rojo">Eliminar</a>
+                        </div>
+                    </li>
+                <%}) %>
+            </ul> 
+        <%} else {%>  
+            <p>No hay grupos creados</p>
+        <%} %>
     </div>
 
 </main>

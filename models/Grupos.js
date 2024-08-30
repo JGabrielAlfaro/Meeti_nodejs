@@ -12,7 +12,7 @@ const Grupos = db.define('grupos', {
         type: Sequelize.UUID,
         primaryKey: true,
         allowNull: false,
-        defaultValue: uuidv4()
+        defaultValue: () => uuidv4() // Genera un nuevo UUID para cada registro
     },
     nombre: {
         type: Sequelize.STRING,
