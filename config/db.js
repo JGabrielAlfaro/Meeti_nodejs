@@ -1,14 +1,14 @@
 const { Sequelize } = require('sequelize');
 
-module.exports = new Sequelize('verceldb', 'default', process.env.DB_PASS, {
+module.exports = new Sequelize('postgres', 'postgres', process.env.DB_PASS, {
     host:  process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 5432,
     dialect: 'postgres',
     dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
+        // ssl: {
+        //     require: true,
+        //     rejectUnauthorized: false
+        // }
     },
     pool: {
         max: 5,

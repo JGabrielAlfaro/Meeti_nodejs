@@ -11,53 +11,31 @@
 
     <div class="seccion-admin">
         <h2>Tus Eventos</h2>
+        <% if(meeti.length > 0) { %>
+        
+            <ul>
 
-        <ul>
-            <li>
-                <div class="informacion-admin">
-                    <p class="fecha">Lunes, 20 de Marzo de 2020</p>
-                    <h3>E-Commece en Mexico</h3>
-                    <small>23 Asistentes</small>
-                </div>
+                <% meeti.forEach(meeti => { %>
+                    
+                    <li>
+                        <div class="informacion-admin">
+                            <p class="fecha"><% meeti.fecha %></p>
+                            <h3><%= meeti.titulo %></h3>
+                            <small><%= meeti.interesados.length %> Interesados</small>
+                        </div>
 
-                <div class="acciones contenedor-botones">
-                    <a href="" class="btn btn-verde">Editar</a>
-                    <a href="" class="btn btn-azul2"> Asistente</a>
-                    <a href="" class="btn btn-rojo">Eliminar</a>
+                        <div class="acciones contenedor-botones">
+                            <a href="/editar-meeti/<%= meeti.id %>" class="btn btn-verde">Editar</a>
+                            <a href="/asistente-meeti/<%= meeti.id %>" class="btn btn-azul2"> Asistente</a>
+                            <a href="/eliminar-meeti/<%= meeti.id %>" class="btn btn-rojo">Eliminar</a>
 
-                </div>
-            </li>
-
-            <li>
-                <div class="informacion-admin">
-                    <p class="fecha">Miercoles, 21 de Marzo de 2020</p>
-                    <h3>Bitcoin y otras cryptomonedas</h3>
-                    <small>30 Asistentes</small>
-                </div>
-
-                <div class="acciones contenedor-botones">
-                    <a href="" class="btn btn-verde">Editar</a>
-                    <a href="" class="btn btn-azul2"> Asistente</a>
-                    <a href="" class="btn btn-rojo">Eliminar</a>
-
-                </div>
-            </li>
-
-            <li>
-                <div class="informacion-admin">
-                    <p class="fecha">Lunes, 20 de Marzo de 2020</p>
-                    <h3>Node Mexico</h3>
-                    <small>230 Asistentes</small>
-                </div>
-
-                <div class="acciones contenedor-botones">
-                    <a href="" class="btn btn-verde">Editar</a>
-                    <a href="" class="btn btn-azul2"> Asistente</a>
-                    <a href="" class="btn btn-rojo">Eliminar</a>
-
-                </div>
-            </li>
-        </ul>
+                        </div>
+                    </li>
+                <%}) %>
+            </ul>
+        <% } else { %>
+            <p>Aún no tienes meeti's creados</p>
+        <% } %>
     </div>
 
     <div class="seccion-admin">

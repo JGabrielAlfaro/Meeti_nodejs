@@ -43,6 +43,7 @@ module.exports = function () {
 
     //Nuevos Meeti's
     router.get('/nuevo-meeti', authController.usuarioAutenticado, meetiController.formNuevoMeeti );
+    router.post('/nuevo-meeti', authController.usuarioAutenticado,meetiController.sanitizarMeeti,  meetiController.crearMeeti );
 
     //Siempre debe ir al final.
     return router;
