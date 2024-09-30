@@ -45,6 +45,14 @@ module.exports = function () {
     router.get('/nuevo-meeti', authController.usuarioAutenticado, meetiController.formNuevoMeeti );
     router.post('/nuevo-meeti', authController.usuarioAutenticado,meetiController.sanitizarMeeti,  meetiController.crearMeeti );
 
+    //Editar Meeti
+    router.get('/editar-meeti/:Id', authController.usuarioAutenticado, meetiController.formEditarMeeti );
+     router.post('/editar-meeti/:Id', authController.usuarioAutenticado, meetiController.sanitizarMeeti, meetiController.editarMeeti );
+
+    //Eliminar Meeti
+    router.get('/eliminar-meeti/:Id', authController.usuarioAutenticado, meetiController.formEliminarMeeti );
+    router.post('/eliminar-meeti/:Id', authController.usuarioAutenticado, meetiController.eliminarMeeti );
+
     //Siempre debe ir al final.
     return router;
 

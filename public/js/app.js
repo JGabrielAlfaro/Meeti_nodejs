@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
         }
     }
-    console.log("Paso por aqui 3")
+
     function success(position) {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
@@ -74,53 +74,96 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function buscarDireccion(e) {
-        
-        if (e.target.value.length > 8) {
+        const inputValue = e.target.value.trim();
+    
+        // Solo ejecuta la búsqueda si el valor es mayor a 8 caracteres
+        if (inputValue.length > 8) {
             markers.clearLayers();
             const provider = new OpenStreetMapProvider();
     
-            provider.search({ query: e.target.value }).then((resultado) => {
-                
-                if (resultado.length > 0) {  // Cambiado a verificar si hay resultados
-                    map.setView([resultado[0].y, resultado[0].x], 16);
-                    marker = new L.marker([resultado[0].y, resultado[0].x], {
-                        draggable: true,
-                        autoPan: true,
-                    })
-                    .bindPopup(resultado[0].label)
-                    .openPopup();
-                    markers.addLayer(marker);
-                    
-                    marker.on('moveend', function(e) {
-                        const position = e.target.getLatLng();
-                        map.panTo(new L.LatLng(position.lat, position.lng));
-                        geocodeService.reverse().latlng(position, 13).run(function (error, result) {
+            // Realiza la búsqueda de la dirección
+            provider.search({ query: inputValue })
+                .then((resultados) => {
+                    if (resultados.length > 0) {
+                        const resultado = resultados[0];
+                        const { x: lng, y: lat, label } = resultado;
+    
+                        // Centrar el mapa en la ubicación encontrada
+                        map.setView([lat, lng], 16);
+    
+                        // Agregar marcador al mapa
+                        let marker = L.marker([lat, lng], {
+                            draggable: true,
+                            autoPan: true,
+                        })
+                        .bindPopup(label)
+                        .openPopup();
+                        
+                        markers.addLayer(marker);
+    
+                        // Mover el mapa a la posición del marcador
+                        map.panTo(new L.LatLng(lat, lng));
+    
+                        // Evento cuando se mueve el marcador
+                        marker.on('moveend', function (event) {
+                            const markerPosition = event.target.getLatLng();
+    
+                            // Actualiza la vista del mapa y realiza la búsqueda inversa
+                            map.panTo(new L.LatLng(markerPosition.lat, markerPosition.lng));
+    
+                            geocodeService.reverse().latlng(markerPosition, 13).run(function (error, result) {
+                                if (error) {
+                                    console.error('Error al obtener la dirección inversa:', error);
+                                    return;
+                                }
+    
+                                llenarInformacion(result);
+    
+                                if (result && result.address) {
+                                    marker.bindPopup(result.address.LongLabel || 'Dirección no disponible');
+                                } else {
+                                    console.warn('No se pudo obtener la dirección.');
+                                }
+                            });
+                        });
+    
+                        // Realizar búsqueda inversa de inmediato sin mover el marcador
+                        geocodeService.reverse().latlng({ lat, lng }, 13).run(function (error, result) {
+                            if (error) {
+                                console.error('Error al obtener la dirección inversa:', error);
+                                return;
+                            }
+    
                             llenarInformacion(result);
+    
                             if (result && result.address) {
-                                marker.bindPopup(result.address.LongLabel);
+                                marker.bindPopup(result.address.LongLabel || 'Dirección no disponible');
                             } else {
-                                console.error('No se pudo obtener la dirección.');
+                                console.warn('No se pudo obtener la dirección.');
                             }
                         });
-                    });
-                } else {
-                    console.error('No se encontraron resultados para la búsqueda.');
-                }
-            }).catch((error) => {
-                console.error('Error en la búsqueda:', error);
-            });
+                    } else {
+                        console.warn('No se encontraron resultados para la búsqueda.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error en la búsqueda de dirección:', error);
+                });
         }
     }
+    
+    function llenarInformacion(resultado) {
+        const { address, latlng } = resultado;
+    
+        // Llena los campos del formulario con la información obtenida
+        document.querySelector('#direccion').value = address.Address || address.LongLabel || '';
+        document.querySelector('#ciudad').value = `${address.City || ''}, ${address.Subregion || ''}`;
+        document.querySelector('#estado').value = address.Region || '';
+        document.querySelector('#pais').value = address.CountryCode || '';
+        document.querySelector('#lat').value = latlng.lat || '';
+        document.querySelector('#lng').value = latlng.lng || '';
+    }
+    
 });
 
 
-function llenarInformacion(resultado) {
-    console.log(resultado)
-   document.querySelector('#direccion').value = resultado.address.Address ||  resultado.address.LongLabel || '';
-   document.querySelector('#ciudad').value = resultado.address.City + ', ' + resultado.address.Subregion || '';
-   document.querySelector('#estado').value = resultado.address.Region || '';
-   document.querySelector('#pais').value = resultado.address.CountryCode || '';
-   document.querySelector('#lat').value = resultado.latlng.lat || '';
-   document.querySelector('#lng').value = resultado.latlng.lng || '';
-
-}
