@@ -58,11 +58,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 //Conectar flash Messages
 app.use(flash());
 
 //Middleware (usuario logueado, flash messages,fecha actual y demás)
 app.use((req, res, next) => {
+  res.locals.usuario = req.user || null;
   res.locals.mensajes = req.flash();
   const fecha = new Date();
   res.locals.year = fecha.getFullYear();
@@ -70,10 +73,12 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
 //ROUTING
 app.use("/", router());
 
 //ARRIENDO EL SERVIDOR
 app.listen(process.env.PORT || 5000, process.env.HOST || "0.0.0.0", () => {
   console.log("Servidor corriendo en el puerto " + process.env.PORT);
-});
+}); 

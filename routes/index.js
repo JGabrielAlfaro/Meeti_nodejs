@@ -20,6 +20,9 @@ module.exports = function () {
     router.get ('/iniciar-sesion', usuarioController.formIniciarSesion );
     router.post('/iniciar-sesion', authController.autenticarUsuario );
 
+    //Cerrar Sesión
+    router.get('/cerrar-sesion',authController.usuarioAutenticado, authController.cerrarSesion);
+
     //Panel de administracion
     router.get('/administracion',authController.usuarioAutenticado,  adminController.panelAdministracion );
 
@@ -52,6 +55,18 @@ module.exports = function () {
     //Eliminar Meeti
     router.get('/eliminar-meeti/:Id', authController.usuarioAutenticado, meetiController.formEliminarMeeti );
     router.post('/eliminar-meeti/:Id', authController.usuarioAutenticado, meetiController.eliminarMeeti );
+
+    //Editar información de perfil
+    router.get('/editar-perfil', authController.usuarioAutenticado, usuarioController.formEditarPerfil );
+    router.post('/editar-perfil', authController.usuarioAutenticado, usuarioController.editarPerfil );
+
+    //Cambiar Password
+    router.get('/cambiar-password', authController.usuarioAutenticado, usuarioController.formCambiarPassword );
+     router.post('/cambiar-password', authController.usuarioAutenticado, usuarioController.cambiarPassword );
+
+     //Imagen Perfil
+     router.get('/imagen-perfil', authController.usuarioAutenticado, usuarioController.formSubirImagen );
+     router.post('/imagen-perfil', authController.usuarioAutenticado, usuarioController.subirImagen, usuarioController.guardarImagenPerfil );
 
     //Siempre debe ir al final.
     return router;

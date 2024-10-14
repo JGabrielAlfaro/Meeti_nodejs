@@ -1,15 +1,14 @@
 <main class="contenedor contenedor-formularios">
     <h1>Meeti - <%= nombrePagina %></h1>
     <form action="/iniciar-sesion" method="POST" class="default-form">
-
         <div class="campo">
             <label for="email">Email</label>
-            <input type="text" name="email" placeholder="Tu Email">
+            <input type="text" name="email" placeholder="Tu Email" required>
         </div>
 
         <div class="campo">
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Tu Password" autocomplete ="off">
+            <input type="password" name="password" placeholder="Tu Password" autocomplete="off" required>
         </div>
 
         <div class="campo enviar">
