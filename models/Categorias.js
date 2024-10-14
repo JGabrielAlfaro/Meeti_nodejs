@@ -9,7 +9,12 @@ const Categorias = db.define('categorias', {
     },
     nombre: {
         type: Sequelize.STRING
+    },
+    slug: {
+        type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 module.exports = Categorias;
