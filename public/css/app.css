@@ -496,6 +496,14 @@ trix-toolbar .trix-button--icon-strike {
     border: 1px solid #0f1;
 }
 
+aside img {
+    display: block ;
+}
+#ubicacion-meeti {
+    height: 400px;
+    width: 85%;
+}
+
 .seccion-admin .fecha,
 .seccion-admin h3 {
     margin: 0;
@@ -639,6 +647,12 @@ aside .fecha {
 aside .ubicacion {
     background-image: url(../img/icono-ubicacion.svg);
 }
+
 aside img {
     display: block;
+}
+
+#ubicacion-meeti {
+    height: 400px;
+    width: 85%;
 }

@@ -60,12 +60,19 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
       <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js" integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ==" crossorigin="" ></script>
+      
     <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js" integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A==" crossorigin=""></script>
     
-    <script src="/dist/bundle.js"></script>
+    <script src="https://unpkg.com/leaflet-geosearch/dist/index.umd.js"></script>
+    
+    <% if(usuario?.id) { %>
+        <script src="/dist/app.bundle.js"></script>
+    <% } %>
 
+    <script src="/dist/meeti.bundle.js"></script>
+    <script type="module" src="/js/meeti.js"></script>
 </body>
 </html>

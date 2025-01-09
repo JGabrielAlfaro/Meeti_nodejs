@@ -65,7 +65,7 @@ app.use(flash());
 
 //Middleware (usuario logueado, flash messages,fecha actual y demás)
 app.use((req, res, next) => {
-  res.locals.usuario = req.user || null;
+  res.locals.usuario = req.user || null; //Pasamos la variable usuario.id o locals.usuario.id a la vista (req.user proviene de passport)
   res.locals.mensajes = req.flash();
   const fecha = new Date();
   res.locals.year = fecha.getFullYear();

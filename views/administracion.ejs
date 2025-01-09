@@ -1,5 +1,7 @@
 <main class="contenedor panel-administracion">
-    <h1><%= nombrePagina %></h1>
+    <h1>
+        <%= nombrePagina %>
+    </h1>
 
     <div class="contenedor-botones">
         <a href="/nuevo-grupo" class="btn btn-amarillo">Nuevo Grupo</a>
@@ -11,22 +13,31 @@
 
     <div class="seccion-admin">
         <h2>Próximos Meeti's </h2>
-        <% if(meeti.length > 0) { %>
-        
+        <% if(meeti.length> 0) { %>
+
             <ul>
 
-                <% meeti.forEach(meeti => { %>
-                    
+                <% meeti.forEach(meeti=> { %>
+
                     <li>
                         <div class="informacion-admin">
                             <!-- //Lo ponemos en español. -->
-                            <% moment.locale('es');%> 
-                            <!-- Formateando la fecha y hora -->
-                            <% const fecha = meeti.fecha + ' ' + meeti.hora; %>
-                            <p class="fecha"><%= moment(fecha).format('LLLL') %> horas</p>
+                            <% moment.locale('es');%>
+                                <!-- Formateando la fecha y hora -->
+                                <% const fecha=meeti.fecha + ' ' + meeti.hora; %>
+                                    <p class="fecha">
+                                        <%= moment(fecha).format('LLLL') %> horas
+                                    </p>
 
-                            <h3><%= meeti.titulo %></h3>
-                            <small><%= meeti.interesados.length %> Interesados</small>
+                                </p>
+                                    <a href="/meeti/<%= meeti.slug %>" target="_blank">
+                                        <h3>
+                                            <%= meeti.titulo %>
+                                        </h3>
+                                    </a>
+                                    <small>
+                                        <%= meeti.interesados.length %> Interesados
+                                    </small>
                         </div>
 
                         <div class="acciones contenedor-botones">
@@ -36,21 +47,23 @@
 
                         </div>
                     </li>
-                <%}) %>
+                    <%}) %>
             </ul>
-        <% } else { %>
-            <p>Aún no tienes meeti's creados</p>
-        <% } %>
+            <% } else { %>
+                <p>Aún no tienes meeti's creados</p>
+                <% } %>
     </div>
 
     <div class="seccion-admin">
         <h2>Tus Grupos</h2>
-        <% if(grupos.length > 0) { %>
+        <% if(grupos.length> 0) { %>
             <ul>
-                <% grupos.forEach(grupo => { %>
+                <% grupos.forEach(grupo=> { %>
                     <li>
                         <div class="informacion-admin">
-                            <h3><%= grupo.nombre %></h3>
+                            <h3>
+                                <%= grupo.nombre %>
+                            </h3>
                         </div>
 
                         <div class="acciones contenedor-botones">
@@ -59,32 +72,39 @@
                             <a href="/eliminar-grupo/<%= grupo.id %>" class="btn btn-rojo">Eliminar</a>
                         </div>
                     </li>
-                <%}) %>
-            </ul> 
-        <%} else {%>  
-            <p>No hay grupos creados</p>
-        <%} %>
+                    <%}) %>
+            </ul>
+            <%} else {%>
+                <p>No hay grupos creados</p>
+                <%} %>
     </div>
 
 
     <div class="seccion-admin">
-        <h2>Anteriores Meeti's </h2>
-        <% if(anteriores.length > 0) { %>
-        
+        <h2>Anteriores Meeti's</h2>
+        <% if(anteriores.length> 0) { %>
+
             <ul>
 
-                <% anteriores.forEach(meeti => { %>
-                    
+                <% anteriores.forEach(meeti=> { %>
+
                     <li>
                         <div class="informacion-admin">
                             <!-- //Lo ponemos en español. -->
-                            <% moment.locale('es');%> 
-                            <!-- Formateando la fecha y hora -->
-                            <% const fecha = meeti.fecha + ' ' + meeti.hora; %>
-                            <p class="fecha"><%= moment(fecha).format('LLLL') %> horas</p>
-
-                            <h3><%= meeti.titulo %></h3>
-                            <small><%= meeti.interesados.length %> Interesados</small>
+                            <% moment.locale('es');%>
+                                <!-- Formateando la fecha y hora -->
+                                <% const fecha=meeti.fecha + ' ' + meeti.hora; %>
+                                    <p class="fecha">
+                                        <%= moment(fecha).format('LLLL') %> horas
+                                    </p>
+                                    <a href="/meeti/<%= meeti.slug %>" target="_blank">
+                                        <h3>
+                                            <%= meeti.titulo %>
+                                        </h3>
+                                    </a>
+                                    <small>
+                                        <%= meeti.interesados.length %> Interesados ddd
+                                    </small>
                         </div>
 
                         <div class="acciones contenedor-botones">
@@ -94,11 +114,11 @@
 
                         </div>
                     </li>
-                <%}) %>
+                    <%}) %>
             </ul>
-        <% } else { %>
-            <p>No hay meeti's anteriores</p>
-        <% } %>
+            <% } else { %>
+                <p>No hay meeti's anteriores</p>
+                <% } %>
     </div>
 
 </main>

@@ -2,22 +2,25 @@ const path = require("path")
 const webpack = require("webpack")
 
 module.exports = {
-    entry: './public/js/app.js',  
+    entry: {
+        app: './public/js/app.js',  // Primera entrada
+        meeti: './public/js/meeti.js' // Segunda entrada
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js', // Esto generará app.bundle.js y meeti.bundle.js
         path: path.join(__dirname, "./public/dist")
     },
     module: {
-        rules: [    
-        {
-            test: /\.m?js$/,
-            use: {
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env']
+        rules: [
+            {
+                test: /\.m?js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             }
-            }
-        }
         ]
     }
-}
+};
