@@ -202,6 +202,57 @@ nav.nav a:first-child {
     border-right: 1px solid #E6E6E6;
 }
 
+
+.listado-asistente {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc; /* Borde general para que parezca una tabla */
+    border-collapse: collapse; /* Asegura que los bordes no se dupliquen */
+}
+
+.listado-asistente li {
+    display: flex; /* Flexbox para alinear la imagen y el texto */
+    align-items: center; /* Alinea verticalmente al centro */
+    gap: 10px; /* Espacio entre la imagen y el texto */
+    border-bottom: 1px solid #ccc; /* Borde inferior como una fila de tabla */
+    padding: 8px; /* Espaciado interno */
+}
+
+.listado-asistente li:last-child {
+    border-bottom: none; /* Elimina el borde inferior del último elemento */
+}
+
+.imagen {
+    border-radius: 50%; /* Hace la imagen redonda */
+    background-color: #e1e1e1; /* Fondo gris claro */
+    height: 50px; /* Altura del círculo */
+    width: 50px; /* Ancho del círculo */
+    overflow: hidden; /* Oculta contenido fuera del círculo */
+    display: flex; /* Centra la imagen */
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen img {
+    height: 100%; /* Escala la imagen */
+    width: 100%; /* Escala proporcionalmente */
+    object-fit: cover; /* Recorta para llenar el círculo */
+}
+
+.nombre-asistente {
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    color: #333; /* Color del texto */
+    font-weight: 500; /* Peso del texto */
+}
+nombre-asistente {
+    font-size: 16px; /* Ajusta el tamaño del texto */
+    color: #333; /* Color del texto */
+    font-weight: 500; /* Peso del texto */
+}
+
+
+
 /** hero **/
 .hero {
     height: 38rem;

@@ -1,5 +1,6 @@
 
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+import asistencia from "./asistencia";
 
 let map;
 let markers;
