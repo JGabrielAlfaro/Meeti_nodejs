@@ -29,9 +29,6 @@ exports.mostrarMeeti = async (req, res,next) => {
         meeti,
         moment,
     })
-<<<<<<< HEAD
-}
-=======
 }
 
 //Confirma o cancela si el usuario asistirá al meeti
@@ -56,9 +53,7 @@ exports.confirmarAsistencia = async (req, res) => {
         res.send('Has cancelado tu asistencia');
     }
     
-   
 }
-
 
 //Muestra los asistentes al meeti
 exports.mostrarAsistentes = async (req, res) => {
@@ -81,4 +76,3 @@ exports.mostrarAsistentes = async (req, res) => {
         asistentes
     })
 }
->>>>>>> 0fccbed (Actualizado)
