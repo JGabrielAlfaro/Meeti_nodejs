@@ -8,6 +8,7 @@ const adminController = require('../controllers/adminController');
 const gruposController = require('../controllers/gruposController');
 const meetiController = require('../controllers/meetiController');
 const meetiControllerFE = require('../controllers/frontend/meetiControllerFE');
+const usuarioControllerFE = require('../controllers/frontend/usuarioControllerFE');
 
 module.exports = function () {
 
@@ -29,6 +30,9 @@ module.exports = function () {
     //Muestra asistente al Meeti
     router.get('/asistentes/:slug',meetiControllerFE.mostrarAsistentes);
 
+
+    // Muestra perfiles en el Frontend
+    router.get('/usuarios/:id', usuarioControllerFE.mostrarUsuario);
 
     //Crear Cuenta Y Confirmar Cuenta
     router.get ('/crear-cuenta', usuarioController.formCrearCuenta );
