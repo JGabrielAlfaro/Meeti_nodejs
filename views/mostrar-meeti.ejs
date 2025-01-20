@@ -21,13 +21,6 @@
         <div class="pregunta-asistencia">
             <!-- <%= JSON.stringify(usuario) %> -->
             <% if(usuario?.id) { %> 
-<<<<<<< HEAD
-            
-                <p>¿Asistirás?</p>
-                <a href="#" class="btn btn-azul">Si</a>
-
-            <%} %>
-=======
                 <% const existe = meeti.interesados.includes(usuario.id) %>
                 <form action="/confirmar-asistencia/<%= meeti.slug %>" id="confirmar-asistencia">
                     <p> Asistiras?</p>
@@ -44,9 +37,8 @@
             <%} else { %>
                 <p>Inicia sesión para confirmar tu asistencia</p>
             <% }%>
->>>>>>> 0fccbed (Actualizado)
         </div>
-    </div>
+
 </div>
 
 <main class="main contenido-evento">
@@ -113,7 +105,6 @@
             </div>
 
             <!--Mapa de ubucacion-->
-           
             <input type="hidden" id="lat" value="<%= meeti.ubicacion.coordinates[0] %>">
             <input type="hidden" id="lng" value="<%= meeti.ubicacion.coordinates[1] %>">
             <input type="hidden" id="direccion" value="<%= meeti.direccion %>">
