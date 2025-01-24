@@ -29,7 +29,12 @@
             <% meeti.forEach(meeti => { %>
                 
                 <div class="card">
-                    <img src="/uploads/grupos/<%= meeti.grupo.imagen %>" alt="<%= meeti.grupo.imagen %>">
+                    
+                    <% if(meeti.grupo.imagen) { %>
+                        <img src="/uploads/grupos/<%= meeti.grupo.imagen %>" alt="<%= meeti.grupo.imagen %>">
+                    <% } else { %>
+                        <img src="/img/meeti.jpg" alt="No hay imagen">
+                    <% } %>
                     <div class="card-texto">
                         <%moment.locale('es');%>
                         <% const fecha = moment(meeti.fecha).format('LLLL');%>
