@@ -34,6 +34,9 @@ module.exports = function () {
     //Muestra los grupos en el FE.
     router.get('/grupos/:id', grupoControllerFE.mostrarGrupo);
 
+    //Muestra meeti por categoria
+    router.get('/categoria/:categoria', meetiControllerFE.muestraCategoria);
+
     // Muestra perfiles en el Frontend
     router.get('/usuarios/:id', usuarioControllerFE.mostrarUsuario);
 
