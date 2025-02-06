@@ -4,9 +4,13 @@ const Usuarios = require('../../models/Usuarios');
 const moment = require('moment');
 const Sequelize = require('sequelize');
 const Categorias = require('../../models/Categorias');
+const Comentarios = require('../../models/Comentarios');
+
 const Op = Sequelize.Op;
 
 exports.mostrarMeeti = async (req, res,next) => {
+
+
     const meeti = await Meeti.findOne({ 
         where : {
             slug : req.params.slug          
@@ -21,13 +25,34 @@ exports.mostrarMeeti = async (req, res,next) => {
             }
         ]
     });
+
+ 
+
     if (!meeti) {
         res.redirect('/');
         return next();
     }   
+
+    //Consultar comentarios despues de verificar si existe el meeti
+    const comentarios = await Comentarios.findAll({
+        where : {
+            meetiId : meeti.id
+        },
+        order : [
+            ['id', 'DESC']
+        ],
+        include : [
+            {
+                model : Usuarios,
+                attributes : ['id', 'nombre', 'imagen']
+            }
+        ]
+    });
+
     res.render('mostrar-meeti', {
         nombrePagina: meeti.titulo, 
         meeti,
+        comentarios,
         moment,
     })
 }
