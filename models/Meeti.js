@@ -97,7 +97,7 @@ const Meeti = db.define(
             }
         },
         ubicacion : {
-            type : Sequelize.GEOMETRY('POINT') 
+            type : Sequelize.GEOGRAPHY('POINT') 
         },
         interesados : {
             type: Sequelize.ARRAY(Sequelize.INTEGER),

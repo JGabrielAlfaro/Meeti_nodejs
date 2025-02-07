@@ -11,8 +11,7 @@ exports.mostrarUsuario = async (req, res, next) => {
 
         // Desestructurar los resultados de Promise.all
         const [usuario, grupos] = await Promise.all(consultas);
-        console.log(usuario)
-        console.log(grupos)
+
 
         if (!usuario) {
             res.redirect('/');
